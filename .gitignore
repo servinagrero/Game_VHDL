@@ -1,0 +1,4 @@
+Game_VHDL/*
+!.gitignore
+!*.vhd
+!*.vcd
