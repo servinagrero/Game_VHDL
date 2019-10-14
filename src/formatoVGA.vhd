@@ -32,7 +32,7 @@ use IEEE.NUMERIC_STD.all;
 --use UNISIM.VComponents.all;
 
 entity formatoVGA is
-  port (color : out std_logic_vector (3 downto 0);
+  port (color : out std_logic_vector (2 downto 0);
         x     : in  std_logic_vector (9 downto 0);
         y     : in  std_logic_vector (9 downto 0));
 end formatoVGA;
@@ -41,7 +41,7 @@ architecture Behavioral of formatoVGA is
   signal x_uns, y_uns : unsigned (9 downto 0);
 
   signal x_pos : integer range 0 to 25;
-  signal y_pos : integer range 0 to 20;
+  signal y_pos : integer range 0 to 16;
 
 begin
 
@@ -51,6 +51,8 @@ begin
   y_uns <= unsigned(y);
   y_pos <= to_integer(y_uns(9 downto 5));
 
-  color <= (others => (x_uns(0) xnor y_uns(0)));
+
+  color <= (others => (x_uns(5) xnor y_uns(5))) when x_pos <= 19 and y_pos <= 14
+           else (others => '0');
 
 end Behavioral;

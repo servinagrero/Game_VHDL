@@ -69,7 +69,7 @@ begin
       wait for 2 ns;
     end if;
 
-    if y = 14 then
+    if y = 15 then
       wait;
     end if;
 

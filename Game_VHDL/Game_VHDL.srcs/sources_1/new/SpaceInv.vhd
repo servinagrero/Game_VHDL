@@ -45,12 +45,13 @@ end SpaceInv;
 architecture Behavioral of SpaceInv is
 
   component formatoVGA
-    port (color : out std_logic_vector (3 downto 0);
+    port (color : out std_logic_vector (2 downto 0);
           x     : in  std_logic_vector (9 downto 0);
           y     : in  std_logic_vector (9 downto 0));
   end component;
 
-  signal color_s  : std_logic_vector(3 downto 0);
+  signal color_s : std_logic_vector(2 downto 0);
+  signal color_vga : std_logic_vector(2 downto 0);
   signal x_s, y_s : std_logic_vector(9 downto 0);
 
   component VGA
@@ -70,7 +71,7 @@ begin
 
   vga_m : VGA port map (clk,
                         reset,
-                        color_s(2 downto 0),
+                        color_vga,
                         Hsync,
                         Vsync,
                         R, G, B,
@@ -81,13 +82,6 @@ begin
                               x_s,
                               y_s);
 
-  process(clk, reset)
-  begin
-    if reset = '1' then
-      color_s <= "0000";
-      Hsync <= '1';
-      Vsync <= '1';
-    end if;
-  end process;
+  color_vga <= color_s;
 
 end Behavioral;
