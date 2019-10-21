@@ -32,13 +32,16 @@ use IEEE.NUMERIC_STD.all;
 --use UNISIM.VComponents.all;
 
 entity SpaceInv is
-  port (clk   : in  std_logic;
-        reset : in  std_logic;
-        Hsync : out std_logic;
-        Vsync : out std_logic;
-        R     : out std_logic_vector (3 downto 0);
-        G     : out std_logic_vector (3 downto 0);
-        B     : out std_logic_vector (3 downto 0));
+  port (clk       : in  std_logic;
+        reset     : in  std_logic;
+        Inicio    : in  std_logic;
+        Izquierda : in  std_logic;
+        Derecha   : in  std_logic;
+        Hsync     : out std_logic;
+        Vsync     : out std_logic;
+        R         : out std_logic_vector (3 downto 0);
+        G         : out std_logic_vector (3 downto 0);
+        B         : out std_logic_vector (3 downto 0));
 end SpaceInv;
 
 
