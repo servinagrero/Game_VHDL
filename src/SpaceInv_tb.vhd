@@ -38,25 +38,31 @@ end SpaceInv_tb;
 architecture Test of SpaceInv_tb is
 
   component SpaceInv is
-    port (clk   : in  std_logic;
-          reset : in  std_logic;
-          Hsync : out std_logic;
-          Vsync : out std_logic;
-          R     : out std_logic_vector (3 downto 0);
-          G     : out std_logic_vector (3 downto 0);
-          B     : out std_logic_vector (3 downto 0));
+    port (clk       : in  std_logic;
+          reset     : in  std_logic;
+          Inicio    : in  std_logic;
+          Izquierda : in  std_logic;
+          Derecha   : in  std_logic;
+          Hsync     : out std_logic;
+          Vsync     : out std_logic;
+          R         : out std_logic_vector (3 downto 0);
+          G         : out std_logic_vector (3 downto 0);
+          B         : out std_logic_vector (3 downto 0));
   end component;
 
-  signal reset        : std_logic := '1';
-  signal clk          : std_logic := '0';
-  signal Hsync, Vsync : std_logic;
-  signal R, G, B      : std_logic_vector(3 downto 0);
+  signal inicio             : std_logic := '0';
+  signal derecha, izquierda : std_logic := '0';
+  signal reset              : std_logic := '1';
+  signal clk                : std_logic := '0';
+  signal Hsync, Vsync       : std_logic;
+  signal R, G, B            : std_logic_vector(3 downto 0);
 
-  signal counter : integer range 0 to 500 := 0;
 begin
 
   SpaceInvm : SpaceInv port map (clk,
                                  reset,
+                                 inicio,
+                                 izquierda, derecha,
                                  Hsync,
                                  Vsync,
                                  R, G, B);
@@ -66,12 +72,23 @@ begin
 
   process
   begin
-    if counter < 500 then
-      counter <= counter + 1;
-      wait for 5 ns;
-    else
-      wait;
-    end if;
+    for I in 0 to 22 loop
+      derecha <= '1';
+      wait for 40 ns;
+      derecha <= '0';
+      wait for 40 ns;
+    end loop;
+
+    wait for 80 ns;
+
+    for I in 0 to 22 loop
+      izquierda <= '1';
+      wait for 40 ns;
+      izquierda <= '0';
+      wait for 40 ns;
+    end loop;
+
+    wait;
   end process;
 
 end Test;

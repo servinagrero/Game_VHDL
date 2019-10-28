@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 07.10.2019 11:46:05
+-- Create Date: 28.10.2019 11:38:40
 -- Design Name: 
--- Module Name: SpaceInv - Behavioral
+-- Module Name: controladorNave - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -33,19 +33,25 @@ use IEEE.NUMERIC_STD.all;
 
 entity controladorNave is
   port (
-    Clk                : in  std_logic;
-    Reset              : in  std_logic;
-    Derecha, Izquierda : in  std_logic;
-    x                  : out std_logic_vector (5 downto 0);
-    y                  : out std_logic_vector (5 downto 0)
+    Clk   : in std_logic;
+    Reset : in std_logic;
+
+    -- Botones para controlar la direccion de la nave
+    Derecha, Izquierda : in std_logic;
+
+    -- Coordenadas de la x e y.
+    -- La x esta codificada de 0 a 19
+    -- La y es siempre contante e igual a 14
+    x, y : out std_logic_vector (4 downto 0)
     );
 end controladorNave;
 
 architecture Behavioral of controladorNave is
   constant y_nave : integer := 14;
-  signal   x_nave : integer range 0 to 19;
+  signal x_nave   : integer range 0 to 19;
 begin
 
+  -- TODO: Detector de flancos para derecha e izquierda
   process(clk, reset)
   begin
     if reset = '1' then

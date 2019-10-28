@@ -2,7 +2,7 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 07.10.2019 11:46:05
+-- Create Date: 28.10.2019 11:37:40
 -- Design Name: 
 -- Module Name: VGA - Behavioral
 -- Project Name: 
@@ -23,7 +23,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
---arithmetic functions with Signed or Unsigned values
+-- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.all;
 
 -- Uncomment the following library declaration if instantiating
@@ -34,12 +34,16 @@ use IEEE.NUMERIC_STD.all;
 entity VGA is
   port (clk   : in  std_logic;
         reset : in  std_logic;
+        -- Color que queremos en formato RGB
         color : in  std_logic_vector (2 downto 0);
+        -- Signal de sincronismo
         Hsync : out std_logic;
         Vsync : out std_logic;
+        -- Canales de colores de salida
         R     : out std_logic_vector (3 downto 0);
         G     : out std_logic_vector (3 downto 0);
         B     : out std_logic_vector (3 downto 0);
+        -- Posicion del pixel actual en la pantalla
         x     : out std_logic_vector (9 downto 0);
         y     : out std_logic_vector (9 downto 0));
 end VGA;
@@ -117,5 +121,5 @@ begin
   R <= (others => color(2));
   G <= (others => color(1));
   B <= (others => color(0));
-  
+
 end Behavioral;

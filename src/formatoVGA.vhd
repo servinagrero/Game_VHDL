@@ -2,7 +2,7 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 07.10.2019 11:46:05
+-- Create Date: 28.10.2019 11:36:57
 -- Design Name: 
 -- Module Name: formatoVGA - Behavioral
 -- Project Name: 
@@ -33,21 +33,34 @@ use IEEE.NUMERIC_STD.all;
 
 entity formatoVGA is
   port (color : out std_logic_vector (2 downto 0);
+        -- Posiciones del rastreo de la pantalla
         x     : in  std_logic_vector (9 downto 0);
         y     : in  std_logic_vector (9 downto 0);
 
-        x_nave : in std_logic_vector (5 downto 0);
+        -- Posiciones de la nave
+        -- La coordenada 'y' siempre va a ser 14;
+        x_nave : in std_logic_vector (4 downto 0);
         y_nave : in std_logic_vector (4 downto 0);
 
-        x_bala : in std_logic_vector (5 downto 0);
+        -- Posiciones de la bala
+        x_bala : in std_logic_vector (4 downto 0);
         y_bala : in std_logic_vector (4 downto 0);
 
-        y_mars : in std_logic_vector (4 downto 0);
-        x_mars : in std_logic_vector (0 to 19)
+        -- Posiciones de los invasores
+        x_inv : in std_logic_vector (0 to 19);
+        y_inv : in std_logic_vector (4 downto 0)
         );
 end formatoVGA;
 
 architecture Behavioral of formatoVGA is
+  -- Colores predefinidos
+  constant BLANCO : std_logic_vector(2 downto 0) := "111";
+  constant NEGRO  : std_logic_vector(2 downto 0) := "000";
+  constant ROJO   : std_logic_vector(2 downto 0) := "100";
+  constant VERDE  : std_logic_vector(2 downto 0) := "010";
+  constant AZUL   : std_logic_vector(2 downto 0) := "001";
+  --
+
   signal x_uns, y_uns : unsigned (9 downto 0);
 
   signal x_pos : integer range 0 to 25;
@@ -66,32 +79,38 @@ begin
   -- else (others => '0');
 
 
-  process(x_nave, y_nave, x_bala, y_bala, x_mars, y_mars)
-    variable x_nave_pos : integer range 0 to 19 := to_integer(unsigned(x_nave, x_nave'length));
-    variable y_nave_pos : integer range 0 to 14 := to_integer(unsigned(y_nave, y_nave'length));
-    variable x_bala_pos : integer range 0 to 19 := to_integer(unsigned(x_bala, x_bala'length));
-    variable y_bala_pos : integer range 0 to 14 := to_integer(unsigned(y_bala, y_bala'length));
-    variable y_mars_pos : integer range 0 to 14 := to_integer(unsigned(y_mars, y_mars'length));
+  -- TODO: Eliminar el proceso y hacerlo concurrente ?
+  process(x_pos, y_pos, x_nave, y_nave, x_bala, y_bala, x_inv, y_inv)
+    variable x_nave_pos : integer range 0 to 19 := to_integer(unsigned(x_nave));
+    variable y_nave_pos : integer range 0 to 14 := to_integer(unsigned(y_nave));
+    variable x_bala_pos : integer range 0 to 19 := to_integer(unsigned(x_bala));
+    variable y_bala_pos : integer range 0 to 14 := to_integer(unsigned(y_bala));
+    variable y_inv_pos  : integer range 0 to 14 := to_integer(unsigned(y_inv));
   begin
-    
+
+    -- Dibujo de la nave
     if x_pos = x_nave_pos and y_pos = y_nave_pos then
-      color <= "001";
-      
+      color <= VERDE;
+
+    -- Dibujo de la bala
     elsif x_pos = x_bala_pos and y_pos = y_bala_pos then
-      color <= "010";
-      
-    elsif y_pos = y_mars_pos then
-      for i in x_mars'range loop
-        if x_mars(i) = '1' and x_pos = i then
-          color <= (others => '1');
+      color <= AZUL;
+
+    -- Dibujo de los invasores
+    elsif y_pos = y_inv_pos then
+      for i in x_inv'range loop
+        if x_inv(i) = '1' and x_pos = i then
+          color <= BLANCO;
         else
-          color <= (others => '0');
+          color <= NEGRO;
         end if;
       end loop;
-      
+
+    -- Dibujo del fondo
     else
-      color <= (others => '0');
+      color <= NEGRO;
     end if;
+
   end process;
 
 end Behavioral;
