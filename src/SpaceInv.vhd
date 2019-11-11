@@ -64,9 +64,6 @@ architecture Behavioral of SpaceInv is
       -- Coordenadas de la nave
       x_nave : in  std_logic_vector (4 downto 0);
       y_nave : in  std_logic_vector (4 downto 0);
-      -- Coordenadas de la bala
-      x_bala : in  std_logic_vector (4 downto 0);
-      y_bala : in  std_logic_vector (4 downto 0);
       -- Coordenadas de los invasores
       x_inv  : in  std_logic_vector (0 to 19);
       y_inv  : in  std_logic_vector (4 downto 0)
@@ -79,9 +76,6 @@ architecture Behavioral of SpaceInv is
 
   signal x_nave : std_logic_vector (4 downto 0);
   signal y_nave : std_logic_vector (4 downto 0);
-
-  signal x_bala : std_logic_vector (4 downto 0);
-  signal y_bala : std_logic_vector (4 downto 0);
 
   signal y_inv : std_logic_vector (4 downto 0);
   signal x_inv : std_logic_vector (0 to 19);
@@ -119,9 +113,6 @@ architecture Behavioral of SpaceInv is
       clk   : in std_logic;
       reset : in std_logic;
 
-      x_bala : in std_logic_vector (4 downto 0);
-      y_bala : in std_logic_vector (4 downto 0);
-
       x_inv : out std_logic_vector (0 to 19);
       y_inv : out std_logic_vector (4 downto 0)
       );
@@ -144,12 +135,12 @@ architecture Behavioral of SpaceInv is
 
   signal clear_nave      : std_logic;
   signal tempNave_en     : std_logic;
-  signal tempNave_cuenta : unsigned(500 downto 0);
+  signal tempNave_cuenta : unsigned(4 downto 0);
   signal tempNave_pulse  : std_logic;
 
   signal clear_inv      : std_logic;
   signal tempInv_en     : std_logic;
-  signal tempInv_cuenta : unsigned(500 downto 0);
+  signal tempInv_cuenta : unsigned(4 downto 0);
   signal tempInv_pulse  : std_logic;
 
 --------------------------------------------------
@@ -167,7 +158,6 @@ begin
   fvga : formatoVGA port map (color  => color_s,
                               x      => x_s, y => y_s,
                               x_nave => x_nave, y_nave => y_nave,
-                              x_bala => x_bala, y_bala => y_bala,
                               x_inv  => x_inv, y_inv => y_inv
                               );
 
@@ -180,7 +170,7 @@ begin
                                     x         => x_nave, y => y_nave
                                     );
 
-  tempNave : temporizador generic map (Ancho => 501)
+  tempNave : temporizador generic map (Ancho => 5)
     port map (clk    => clk,
               reset  => reset,
               clear  => clear_nave,
@@ -190,13 +180,11 @@ begin
 
 
 
-
   cInv : controladorInv port map (clk    => clk_inv,
                                   reset  => reset,
-                                  x_bala => x_bala, y_bala => y_bala,
                                   x_inv  => x_inv, y_inv  => y_inv);
 
-  tempInv : temporizador generic map (Ancho => 501)
+  tempInv : temporizador generic map (Ancho => 5)
     port map (clk    => clk,
               reset  => reset,
               clear  => clear_inv,

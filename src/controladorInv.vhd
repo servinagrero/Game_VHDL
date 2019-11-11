@@ -33,41 +33,45 @@ use IEEE.NUMERIC_STD.all;
 
 entity controladorInv is
   port(
-    clk    : in  std_logic;
-    reset  : in  std_logic;
-    -- Posicion de la bala
-    x_bala : in  std_logic_vector (4 downto 0);
-    y_bala : in  std_logic_vector (4 downto 0);
+    clk   : in  std_logic;
+    reset : in  std_logic;
     -- Posiciones de los invasores
-    x_inv  : out std_logic_vector (0 to 19);
-    y_inv  : out std_logic_vector (4 downto 0)
+    x_inv : out std_logic_vector (0 to 19);
+    y_inv : out std_logic_vector (4 downto 0)
     );
 end controladorInv;
 
 architecture Behavioral of controladorInv is
   signal s_y_inv : integer range 0 to 14;
   signal s_x_inv : unsigned (0 to 19);
-  
+
 begin
-  
+
   process(clk, reset)
   begin
     if reset = '1' then
       s_y_inv <= 0;
       s_x_inv <= "10101010101010101010";
+
     elsif rising_edge(clk) then
       -- TODO: implementar si coincide bala con marciano
+
       if (s_y_inv mod 2) = 0 then
         if s_x_inv(19) = '0' then
           s_x_inv <= '0' & s_x_inv(0 to 18);
         else
-          s_y_inv <= s_y_inv + 1;
+          if s_y_inv < 14 then
+            s_y_inv <= s_y_inv + 1;
+          end if;
         end if;
       else
+
         if s_x_inv(0) = '0' then
           s_x_inv <= s_x_inv(1 to 19) & '0';
         else
-          s_y_inv <= s_y_inv + 1;
+          if s_y_inv < 14 then
+            s_y_inv <= s_y_inv + 1;
+          end if;
         end if;
       end if;
     end if;
@@ -75,5 +79,5 @@ begin
 
   x_inv <= std_logic_vector(s_x_inv);
   y_inv <= std_logic_vector(to_unsigned(s_y_inv, y_inv'length));
-  
+
 end Behavioral;

@@ -47,7 +47,7 @@ entity controladorNave is
 end controladorNave;
 
 architecture Behavioral of controladorNave is
-  constant y_nave : integer := 14;
+  constant y_nave : integer := 0;
   signal x_nave   : integer range 0 to 19;
 begin
 
@@ -55,7 +55,7 @@ begin
   process(clk, reset)
   begin
     if reset = '1' then
-      x_nave <= 8;
+      x_nave <= 1;
     elsif rising_edge(clk) then
       if Derecha = '1' then
         if x_nave < 19 then

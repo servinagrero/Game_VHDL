@@ -42,10 +42,6 @@ entity formatoVGA is
         x_nave : in std_logic_vector (4 downto 0);
         y_nave : in std_logic_vector (4 downto 0);
 
-        -- Posiciones de la bala
-        x_bala : in std_logic_vector (4 downto 0);
-        y_bala : in std_logic_vector (4 downto 0);
-
         -- Posiciones de los invasores
         x_inv : in std_logic_vector (0 to 19);
         y_inv : in std_logic_vector (4 downto 0)
@@ -66,6 +62,10 @@ architecture Behavioral of formatoVGA is
   signal x_pos : integer range 0 to 25;
   signal y_pos : integer range 0 to 16;
 
+  signal x_nave_pos : integer range 0 to 25;
+  signal y_nave_pos : integer range 0 to 16;
+
+  signal y_inv_pos : integer range 0 to 25;
 begin
 
   x_uns <= unsigned(x);
@@ -73,38 +73,34 @@ begin
   y_uns <= unsigned(y);
   y_pos <= to_integer(y_uns(9 downto 5));
 
+  x_nave_pos <= to_integer(unsigned(x_nave));
+  y_nave_pos <= to_integer(unsigned(y_nave));
+  y_inv_pos  <= to_integer(unsigned(y_inv));
+
 
   -- Dibujar tablero de ajedrez
   -- color <= (others => (x_uns(5) xnor y_uns(5))) when x_pos <= 19 and y_pos <= 14
   -- else (others => '0');
 
-
-  -- TODO: Eliminar el proceso y hacerlo concurrente ?
-  process(x_pos, y_pos, x_nave, y_nave, x_bala, y_bala, x_inv, y_inv)
-    variable x_nave_pos : integer range 0 to 19 := to_integer(unsigned(x_nave));
-    variable y_nave_pos : integer range 0 to 14 := to_integer(unsigned(y_nave));
-    variable x_bala_pos : integer range 0 to 19 := to_integer(unsigned(x_bala));
-    variable y_bala_pos : integer range 0 to 14 := to_integer(unsigned(y_bala));
-    variable y_inv_pos  : integer range 0 to 14 := to_integer(unsigned(y_inv));
+  process(x_pos, y_pos, x_nave_pos, y_nave_pos, y_inv_pos)
+  -- process(x_pos, y_pos, x_nave_pos, y_nave_pos)
   begin
 
     -- Dibujo de la nave
     if x_pos = x_nave_pos and y_pos = y_nave_pos then
       color <= VERDE;
 
-    -- Dibujo de la bala
-    elsif x_pos = x_bala_pos and y_pos = y_bala_pos then
-      color <= AZUL;
-
     -- Dibujo de los invasores
-    elsif y_pos = y_inv_pos then
-      for i in x_inv'range loop
-        if x_inv(i) = '1' and x_pos = i then
-          color <= BLANCO;
-        else
-          color <= NEGRO;
-        end if;
-      end loop;
+    -- elsif y_pos = y_inv_pos then
+    --   for i in x_inv'range loop
+    --     if x_inv(i) = '1' and x_pos = i then
+    --       color <= BLANCO;
+    --     else
+    --       color <= NEGRO;
+    --     end if;
+    --   end loop;
+    elsif y_pos = y_inv_pos and x_inv(x_pos) = '1' then
+      color <= BLANCO;
 
     -- Dibujo del fondo
     else

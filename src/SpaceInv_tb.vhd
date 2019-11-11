@@ -41,8 +41,8 @@ architecture Test of SpaceInv_tb is
     port (clk       : in  std_logic;
           reset     : in  std_logic;
           Inicio    : in  std_logic;
-          Izquierda : in  std_logic;
           Derecha   : in  std_logic;
+          Izquierda : in  std_logic;
           Hsync     : out std_logic;
           Vsync     : out std_logic;
           R         : out std_logic_vector (3 downto 0);
@@ -59,33 +59,35 @@ architecture Test of SpaceInv_tb is
 
 begin
 
-  SpaceInvm : SpaceInv port map (clk,
-                                 reset,
-                                 inicio,
-                                 izquierda, derecha,
-                                 Hsync,
-                                 Vsync,
-                                 R, G, B);
+  SpaceInvm : SpaceInv port map (clk => clk,
+                                 reset => reset,
+                                 inicio => inicio,
+                                 izquierda => izquierda,
+                                 derecha => derecha,
+                                 Hsync => Hsync,
+                                 Vsync => Vsync,
+                                 R => R, G => G, B => B);
 
   clk   <= not clk after 31.15 ns;
-  reset <= '0'     after 5 ns;
+  reset <= '0'     after 50 ns;
 
   process
   begin
+    wait for 50 ns;
     for I in 0 to 22 loop
       derecha <= '1';
-      wait for 40 ns;
+      wait for 80 ns;
       derecha <= '0';
-      wait for 40 ns;
+      wait for 80 ns;
     end loop;
 
     wait for 80 ns;
 
     for I in 0 to 22 loop
       izquierda <= '1';
-      wait for 40 ns;
+      wait for 80 ns;
       izquierda <= '0';
-      wait for 40 ns;
+      wait for 80 ns;
     end loop;
 
     wait;
