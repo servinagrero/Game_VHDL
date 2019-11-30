@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1574684685" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/impl_1/SpaceInv_routed.dcp">
+  <File Type="ROUTE-PWR" Name="SpaceInv_power_routed.rpt"/>
+  <File Type="PA-TCL" Name="SpaceInv.tcl"/>
+  <File Type="BITSTR-BMM" Name="SpaceInv_bd.bmm"/>
+  <File Type="ROUTE-PWR-SUM" Name="SpaceInv_power_summary_routed.pb"/>
+  <File Type="REPORTS-TCL" Name="SpaceInv_reports.tcl"/>
+  <File Type="OPT-DCP" Name="SpaceInv_opt.dcp"/>
+  <File Type="OPT-DRC" Name="SpaceInv_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="SpaceInv.hwdef"/>
+  <File Type="PWROPT-DCP" Name="SpaceInv_pwropt.dcp"/>
+  <File Type="PLACE-DCP" Name="SpaceInv_placed.dcp"/>
+  <File Type="PLACE-IO" Name="SpaceInv_io_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="SpaceInv_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="SpaceInv_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="SpaceInv_control_sets_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="SpaceInv_incremental_reuse_pre_placed.rpt"/>
+  <File Type="BG-BGN" Name="SpaceInv.bgn"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="SpaceInv_postplace_pwropt.dcp"/>
+  <File Type="BG-BIN" Name="SpaceInv.bin"/>
+  <File Type="PHYSOPT-DCP" Name="SpaceInv_physopt.dcp"/>
+  <File Type="BITSTR-MSK" Name="SpaceInv.msk"/>
+  <File Type="ROUTE-ERROR-DCP" Name="SpaceInv_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="SpaceInv_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="SpaceInv_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="SpaceInv_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="SpaceInv_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-RPX" Name="SpaceInv_drc_routed.rpx"/>
+  <File Type="BITSTR-LTX" Name="SpaceInv.ltx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="SpaceInv_methodology_drc_routed.rpt"/>
+  <File Type="BITSTR-MMI" Name="SpaceInv.mmi"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="SpaceInv_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="SpaceInv_methodology_drc_routed.pb"/>
+  <File Type="BITSTR-SYSDEF" Name="SpaceInv.sysdef"/>
+  <File Type="ROUTE-PWR-RPX" Name="SpaceInv_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="SpaceInv_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="SpaceInv_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="SpaceInv_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="SpaceInv_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="SpaceInv_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-CLK" Name="SpaceInv_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="SpaceInv_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="SpaceInv_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="SpaceInv_bus_skew_routed.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="SpaceInv_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="SpaceInv_postroute_physopt_bb.dcp"/>
+  <File Type="BG-BIT" Name="SpaceInv.bit"/>
+  <File Type="BITSTR-RBT" Name="SpaceInv.rbt"/>
+  <File Type="BITSTR-NKY" Name="SpaceInv.nky"/>
+  <File Type="BG-DRC" Name="SpaceInv.drc"/>
+  <File Type="RDI-RDI" Name="SpaceInv.vdi"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/Debounce.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/GestionEntradas.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/state.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/VGA.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/controladorBala.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/controladorInv.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/controladorNave.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/formatoVGA.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/temporizador.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/SpaceInv.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="SpaceInv"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PPRDIR/../spaceinv.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/impl_1/SpaceInv_routed.dcp">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PRUNDIR/impl_1/SpaceInv_routed.dcp"/>
+        <Attr Name="ImportTime" Val="1574684502"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="impl_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/SpaceInv.dcp">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PRUNDIR/synth_1/SpaceInv.dcp"/>
+        <Attr Name="ImportTime" Val="1574684502"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>
